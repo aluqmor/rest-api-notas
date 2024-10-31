@@ -12,15 +12,10 @@ NoteHandler.getInstance('http://localhost:3000').getAllNotes((datos)=> {
 document.getElementById("filterButton").addEventListener("click", () => {
   const mes = document.getElementById("monthFilter").value;
   const filteredNotes = notes.filter((note) => {
-    const mesNota = note.fechaCreacion.split("-")[1]; // Uso el método split para dividir la cadena y obtengo el mes
+    const mesNota = note.fechaCreacion.split("-")[1]; // Uso el método split para dividir la cadena y obtengo el mes que esta en la segunda posición de la fecha
     return mesNota === mes;
   });
   const notesFilteredDiv = document.getElementById("notasFiltradas");
-  if (filteredNotes.length > 0) {
-    notesFilteredDiv.innerHTML = `<h3>Notas del mes seleccionado:</h3>`;
-    UI.drawNotes(filteredNotes, notesFilteredDiv);
-  } else {
-    notesFilteredDiv.innerHTML = "<p>No hay notas para el mes seleccionado.</p>";
-  }
+  UI.notesFiltered(filteredNotes, notesFilteredDiv);
 });
 
