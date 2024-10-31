@@ -3,19 +3,31 @@ import { NoteConsumer } from './modulos/NoteConsumer.js';
 import { UI } from './modulos/UI.js';
 
 let notes = null;
-NoteHandler.getInstance('http://localhost:3000').getAllNotes((datos)=> {
+NoteHandler.getInstance('http://localhost:3000').getAllNotes((datos) => {
   notes = NoteConsumer.consumNotes(datos);
   UI.drawNotes(notes, document.getElementById('nota'));
 });
 
-// Hago una función para filtrar las notas por mes cuando se haga click en el botón
+// Función para filtrar las notas por mes de creación
 document.getElementById("filterButton").addEventListener("click", () => {
   const mes = document.getElementById("monthFilter").value;
   const filteredNotes = notes.filter((note) => {
-    const mesNota = note.fechaCreacion.split("-")[1]; // Uso el método split para dividir la cadena y obtengo el mes que esta en la segunda posición de la fecha
-    return mesNota === mes;
+    const mesNota = new Date(note.fechaCreacion).getMonth() + 1; // Obtiene el mes de la fecha de creación
+    return mesNota === parseInt(mes);
   });
-  const notesFilteredDiv = document.getElementById("notasFiltradas");
-  UI.notesFiltered(filteredNotes, notesFilteredDiv);
+  UI.drawNotes(filteredNotes, document.getElementById('nota'));
 });
 
+// Función para agregar una nota nueva
+document.getElementById('noteForm').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const tipo = document.getElementById('tipo').value;
+  const contenido = document.getElementById('contenido').value;
+  const fechaCreacion = document.getElementById('fechaCreacion').value;
+  NoteHandler.getInstance('http://localhost:3000').addNote({ tipo, contenido, fechaCreacion }, (datos) => {
+      notes = NoteConsumer.consumNotes(datos);
+      UI.drawNotes(notes, document.getElementById('nota'));
+  }, (error) => {
+      console.error(error);
+  });
+});

@@ -28,7 +28,20 @@
     </select>
     <button id="filterButton">Filtrar</button>
     </div>
-    <div id="notasFiltradas"></div>
+    <div id="nota"></div>
+    <h3>Añadir nota:</h3>
+    <form id="noteForm">
+        <label for="tipo">Tipo:</label>
+        <select id="tipo">
+            <option value="normal">Normal</option>
+            <option value="critica">Crítica</option>
+        </select>
+        <label for="contenido">Contenido:</label>
+        <input type="text" id="contenido">
+        <label for="fechaCreacion">Fecha de creacion:</label>
+        <input type="date" id="fechaCreacion">
+        <button type="submit">Añadir</button>
+    </form>
     <script type="module" src="js/index.js"></script>
 </body>
 </html>

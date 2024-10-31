@@ -22,7 +22,7 @@ html, body {
     font-family: Montserrat;
 }
 
-.notas {
+.filtrado {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -31,11 +31,24 @@ html, body {
     padding-top: 1.2rem;
 }
 
-#notasFiltradas {
+.notas {
     padding: 2rem;
-    gap: 10rem;
+    gap: .5rem;
 
     display: flex;
     justify-content: center;
     font-family: Inter;
+}
+
+#nota {
+    text-align: center;
+}
+
+h3 {
+    margin-top: 8rem;
+    text-align: center;
+}
+
+#noteForm {
+    text-align: center;
 }
