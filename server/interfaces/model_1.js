@@ -1,16 +1,18 @@
 export const model1 = {
     panels: [
         {
+            type: 'panel',
             name: 'panel1',
             width: '100',
             height: '100',
-            cssdata: 'panel_style_1'
+            cssData: 'panel_style_1'
         },
         {
+            type: 'panel',
             name: 'panel2',
             width: '100',
             height: '100',
-            cssdata: 'panel_style_2'
+            cssData: 'panel_style_2'
         }
     ],
     components: [
